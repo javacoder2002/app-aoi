@@ -21,18 +21,39 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
-
+    /**
+     * Bu yerda barcha mijozlarni ro'yxatini qaytaramiz.<br>
+     * We return a list of all customers here.
+     * @return customers
+     */
     @GetMapping
     public List<Customer> getCustomer(){
         return customerService.getCustomers();
     }
 
-
+    /**
+     * Id orqali 1 ta mijozni qaytaramiz.<br>
+     * We return one customer by id.
+     * @param id
+     * @return one customer
+     * Agar Id orqali mijoz topilmasa null qaytaramiz
+     * if the customer is not found by id, then we return null.
+     */
     @GetMapping("/api/customer/{id}")
     public Customer getCustomerById(@PathVariable Integer id) {
         return customerService.getCustomerById(id);
     }
 
+    /**
+     * Bu metod orqali  mijoz qo'shamiz
+     * We add the customer by this method.
+     * @param customerDto
+     * @return ApiResponse
+     * Bizga CustomerDto keladi.<br>
+     * CustomerDto comes to us.<br>
+     * Validetion qo'ydik. <br>
+     * We put the validation
+     */
     @PostMapping
     public ApiResponse addCustomer(@RequestBody CustomerDto customerDto){
         return customerService.addCustomer(customerDto);

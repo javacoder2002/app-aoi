@@ -27,11 +27,34 @@ public class CustomerService {
         return customers;
     }
 
+    /**
+     * Id orqali 1 ta mijozni qaytaramiz.<br>
+     * We return one customer by id.
+     * @param id
+     * @return one customer
+     * Agar Id orqali mijoz topilmasa null qaytaramiz
+     * if the customer is not found by id, then we return null.
+     */
     public Customer getCustomerById(Integer id) {
         Optional<Customer> optionalCustomer = customerRepository.findById(id);
+
+//        if(optionalCustomer.isPresent())
+//            return optionalCustomer.get();
+//        return null;
         return optionalCustomer.orElse(null);
     }
 
+
+    /**
+     * Bu metod orqali  mijoz qo'shamiz
+     * We add the customer by this method.
+     * @param customerDto
+     * @return ApiResponse
+     * Bizga CustomerDto keladi.<br>
+     * CustomerDto comes to us.<br>
+     * Validetion qo'ydik. <br>
+     * We put the validation
+     */
     public ApiResponse addCustomer(CustomerDto customerDto) {
 
         String fullName = customerDto.getFullName();
